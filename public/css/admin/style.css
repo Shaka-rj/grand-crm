@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --sidebar-width: 250px;
+
+    --primary: #4f46e5;
+
+    --text: #1f2937;
+    --muted: #8b93a1;
+
+    --border: #e7e9ed;
+
+    --sidebar-bg: #020431;
+    --sidebar-tx: #fff;
+    --body-bg: #f7f8fa;
+}
+
+
+body {
+    font-family: "Inter", sans-serif;
+
+    background: var(--body-bg);
+    color: var(--text);
+}
+
+
+/* ==============================
+   LAYOUT
+============================== */
+
+.crm-layout {
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* ==============================
+   SIDEBAR
+============================== */
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background: var(--sidebar-bg);
+
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 14px 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* ==============================
+   DEPARTMENT
+============================== */
+
+.department {
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 8px 10px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #fff;
+
+    transition: 0.2s;
+}
+
+.department:hover {
+    background: #f5f6f8;
+}
+
+.department-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
+
+    overflow: hidden;
+}
+
+.department-info span {
+    font-size: 11px;
+
+    color: #a0a6af;
+
+    margin-bottom: 3px;
+}
+
+.department-info strong {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.department-arrow {
+    color: #a0a6af;
+
+    font-size: 10px;
+
+    margin-left: 8px;
+}
+
+
+/* ==============================
+   MENU
+============================== */
+
+.sidebar-menu {
+    margin-top: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.menu-item {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 11px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    color: #efefef;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.menu-item i {
+    width: 22px;
+
+    margin-right: 11px;
+
+    text-align: center;
+
+    color: #8d95a1;
+
+    font-size: 15px;
+}
+
+.menu-item:hover {
+    background: #f4f5f7;
+
+    color: #20242a;
+}
+
+.menu-item:hover i {
+    color: #5f6670;
+}
+
+
+/* ==============================
+   ACTIVE
+============================== */
+
+.menu-item.active {
+    background: #eef2ff;
+
+    color: var(--primary);
+
+    font-weight: 600;
+}
+
+.menu-item.active i {
+    color: var(--primary);
+}
+/* =========================
+   BO'LIMLAR
+========================= */
+
+.sidebar-departments {
+    padding: 0 12px;
+}
+
+.sidebar-section-title {
+    padding: 0 12px 10px;
+
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.department-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.department-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 48px;
+
+    padding: 7px 10px;
+
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.department-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.department-left img {
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+.department-left span {
+    overflow: hidden;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.department-item > i {
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.3);
+
+    transition: transform 0.2s ease;
+}
+
+.department-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+}
+
+.department-item:hover > i {
+    color: rgba(255, 255, 255, 0.7);
+    transform: translateX(2px);
+}
+
+/* Aktiv bo'lim */
+
+.department-item.active {
+    background: rgba(255, 255, 255, 0.12);
+
+    color: #fff;
+}
+
+.department-item.active > i {
+    color: #fff;
+}
+
+.department-item.active .department-left span {
+    font-weight: 600;
+}
+
+/* ==============================
+   BOTTOM
+============================== */
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #f0f1f3;
+}
+
+.sidebar-bottom .menu-item {
+    margin-top: 3px;
+}
+
+
+/* CHIQISH */
+
+.sidebar-bottom .logout:hover {
+    background: #fff1f2;
+
+    color: #dc2626;
+}
+
+.sidebar-bottom .logout:hover i {
+    color: #dc2626;
+}
+
+
+/* ==============================
+   CONTENT
+============================== */
+
+.content {
+    margin-left: var(--sidebar-width);
+
+    width: calc(100% - var(--sidebar-width));
+
+    min-height: 100vh;
+
+    background: var(--body-bg);
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 700px) {
+
+    :root {
+        --sidebar-width: 70px;
+    }
+
+    .sidebar {
+        padding: 12px 8px;
+    }
+
+    .department {
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .department-info,
+    .department-arrow,
+    .menu-item span {
+        display: none;
+    }
+
+    .department-icon {
+        margin: 0;
+    }
+
+    .menu-item {
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .menu-item i {
+        margin: 0;
+    }
+
+}

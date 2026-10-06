@@ -1,0 +1,867 @@
+/* =========================================
+   EMPLOYEES PAGE
+========================================= */
+
+.employees-page {
+    padding: 30px;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.employees-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+}
+
+.employees-header h1 {
+    margin: 0;
+
+    color: #020431;
+
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.employees-header p {
+    margin: 6px 0 0;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+/* =========================================
+   ADD BUTTON
+========================================= */
+
+.add-employee-btn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    height: 44px;
+
+    padding: 0 17px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: #e00;
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 18px rgba(2, 4, 49, 0.18);
+
+    transition: 0.2s ease;
+}
+
+.add-employee-btn i {
+    font-size: 12px;
+}
+
+.add-employee-btn:hover {
+    background: #e00;
+
+    box-shadow: 0 7px 20px rgba(238, 0, 0, 0.22);
+}
+
+/* =========================================
+   TABLE CARD
+========================================= */
+
+.employees-card {
+    background: #fff;
+
+    border: 1px solid #eee;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.employees-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.employees-card-header h2 {
+    margin: 0;
+
+    color: #020431;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.employees-card-header span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #999;
+
+    font-size: 11px;
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.employee-search {
+    position: relative;
+
+    width: 230px;
+}
+
+.employee-search i {
+    position: absolute;
+
+    left: 13px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #999;
+
+    font-size: 12px;
+}
+
+.employee-search input {
+    width: 100%;
+    height: 38px;
+
+    padding: 0 12px 0 36px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    outline: none;
+
+    color: #020431;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    box-sizing: border-box;
+
+    transition: 0.2s;
+}
+
+.employee-search input:focus {
+    border-color: #020431;
+
+    box-shadow: 0 0 0 3px rgba(2, 4, 49, 0.06);
+}
+
+/* =========================================
+   TABLE
+========================================= */
+
+.employees-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.employees-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 850px;
+}
+
+.employees-table thead {
+    background: #fafafa;
+}
+
+.employees-table th {
+    padding: 13px 22px;
+
+    color: #929292;
+
+    text-align: left;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.6px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.employees-table td {
+    padding: 16px 22px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    vertical-align: middle;
+}
+
+.employees-table tbody tr {
+    transition: 0.2s ease;
+}
+
+.employees-table tbody tr:hover {
+    background: #fcfcfd;
+}
+
+.employees-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* =========================================
+   EMPLOYEE INFO
+========================================= */
+
+.employee-info {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.employee-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #020431;
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    box-shadow: 0 4px 10px rgba(2, 4, 49, 0.12);
+}
+
+.employee-info strong {
+    display: block;
+
+    color: #020431;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.employee-info span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #999;
+
+    font-size: 10px;
+}
+
+/* =========================================
+   USERNAME
+========================================= */
+
+.username {
+    color: #555;
+
+    font-size: 12px;
+}
+
+/* =========================================
+   DEPARTMENT TAGS
+========================================= */
+
+.department-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 5px;
+}
+
+.department-tag {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    background: #f2f3f7;
+
+    color: #020431;
+
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.employee-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.employee-status::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+}
+
+.employee-status.active {
+    background: #f1f8f3;
+    color: #24843d;
+}
+
+.employee-status.active::before {
+    background: #24843d;
+}
+
+.employee-status.inactive {
+    background: #fff1f1;
+    color: #e00;
+}
+
+.employee-status.inactive::before {
+    background: #e00;
+}
+
+/* =========================================
+   EDIT
+========================================= */
+
+.employee-actions {
+    text-align: right;
+}
+
+.edit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    height: 34px;
+
+    padding: 0 11px;
+
+    border: 1px solid #e6e6e6;
+    border-radius: 7px;
+
+    background: #fff;
+    color: #020431;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.edit-btn i {
+    font-size: 10px;
+}
+
+.edit-btn:hover {
+    border-color: #020431;
+
+    background: #020431;
+    color: #fff;
+
+    box-shadow: 0 4px 12px rgba(2, 4, 49, 0.15);
+}
+
+/* =========================================
+   EMPLOYEE MODAL
+========================================= */
+
+.employee-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.employee-modal.show {
+    display: flex;
+}
+
+/* Overlay */
+
+.employee-modal-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(2, 4, 49, 0.55);
+
+    backdrop-filter: blur(3px);
+}
+
+/* Card */
+
+.employee-modal-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #fff;
+
+    border-radius: 16px;
+
+    box-shadow: 0 25px 70px rgba(2, 4, 49, 0.25);
+
+    animation: employeeModalShow 0.2s ease;
+}
+
+@keyframes employeeModalShow {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.employee-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 22px 24px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.employee-modal-header h2 {
+    margin: 0;
+
+    color: #020431;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.employee-modal-header p {
+    margin: 5px 0 0;
+
+    color: #999;
+
+    font-size: 12px;
+}
+
+.modal-close {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: #f5f5f5;
+
+    color: #777;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    background: #fff0f0;
+
+    color: #e00;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+.employee-modal-card form {
+    padding: 22px 24px;
+}
+
+.employee-form-group {
+    margin-bottom: 18px;
+}
+
+.employee-form-group > label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #020431;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.employee-form-group input[type="text"],
+.employee-form-group input[type="password"] {
+    width: 100%;
+    height: 42px;
+
+    padding: 0 13px;
+
+    border: 1px solid #e1e1e1;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    color: #020431;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    box-sizing: border-box;
+
+    transition: 0.2s;
+}
+
+.employee-form-group input:focus {
+    border-color: #020431;
+
+    box-shadow: 0 0 0 3px rgba(2, 4, 49, 0.06);
+}
+
+.employee-form-group input::placeholder {
+    color: #aaa;
+}
+
+/* =========================================
+   DEPARTMENT CHECKBOXES
+========================================= */
+
+.department-checkboxes {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+}
+
+.department-checkbox {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-height: 44px;
+
+    padding: 0 11px;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.department-checkbox input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.checkbox-custom {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    border: 1.5px solid #d4d4d4;
+
+    border-radius: 4px;
+
+    color: #fff;
+
+    transition: 0.2s;
+}
+
+.checkbox-custom i {
+    display: none;
+
+    font-size: 9px;
+}
+
+.department-checkbox-name {
+    color: #333;
+
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Checked */
+
+.department-checkbox:has(input:checked) {
+    border-color: #020431;
+
+    background: rgba(2, 4, 49, 0.035);
+}
+
+.department-checkbox:has(input:checked) .checkbox-custom {
+    border-color: #020431;
+
+    background: #020431;
+}
+
+.department-checkbox:has(input:checked) .checkbox-custom i {
+    display: block;
+}
+
+.department-checkbox:has(input:checked) .department-checkbox-name {
+    color: #020431;
+
+    font-weight: 600;
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.employee-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 24px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eee;
+}
+
+.modal-cancel,
+.modal-submit {
+    height: 40px;
+
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.modal-cancel {
+    border: 1px solid #e1e1e1;
+
+    background: #fff;
+
+    color: #666;
+}
+
+.modal-cancel:hover {
+    border-color: #ccc;
+
+    background: #f7f7f7;
+}
+
+.modal-submit {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    border: 0;
+
+    background: #020431;
+
+    color: #fff;
+
+    box-shadow: 0 5px 14px rgba(2, 4, 49, 0.16);
+}
+
+.modal-submit:hover {
+    background: #e00;
+
+    box-shadow: 0 5px 15px rgba(238, 0, 0, 0.2);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .employee-modal {
+        padding: 12px;
+    }
+
+    .employee-modal-card {
+        max-height: 94vh;
+    }
+
+    .employee-modal-header,
+    .employee-modal-card form {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .department-checkboxes {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   EDIT EMPLOYEE
+========================================= */
+
+.password-hint {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #999;
+
+    font-size: 10px;
+}
+
+/* Bottom actions */
+
+.edit-employee-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 24px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eee;
+}
+
+.edit-actions-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+/* Delete */
+
+.delete-employee-btn {
+    display: flex;
+
+    align-items: center;
+    gap: 7px;
+
+    height: 40px;
+
+    padding: 0 13px;
+
+    border: 1px solid #ffd6d6;
+
+    border-radius: 8px;
+
+    background: #fff5f5;
+
+    color: #e00;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.delete-employee-btn:hover {
+    border-color: #e00;
+
+    background: #e00;
+
+    color: #fff;
+
+    box-shadow: 0 5px 15px rgba(238, 0, 0, 0.18);
+}
