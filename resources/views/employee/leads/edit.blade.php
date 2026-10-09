@@ -44,9 +44,18 @@
                     </label>
 
                 @endforeach
-
+            <div class="status-comment">
+                <label for="statusComment">Izoh <span>(ixtiyoriy)</span></label>
+                <textarea
+                    name="comment"
+                    id="statusComment"
+                    rows="2"
+                    maxlength="2000"
+                    placeholder="Qisqacha izoh..."
+                ></textarea>
             </div>
-
+            
+            </div>
 
             <div class="status-modal-footer">
 

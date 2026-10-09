@@ -8,22 +8,28 @@ use App\Models\User;
 use App\Models\Lead;
 use App\Models\Department;
 use App\Models\LeadStatus;
+use App\Models\LeadHistory;
+use Illuminate\Support\Facades\DB;
 
 class LeadsController extends Controller
 {
     public function index(Request $request)
     {
         $departmentId = session('department_id');
-
-        $department = Department::findOrFail($departmentId);
+        $userId = auth()->id();
 
         // Default: oxirgi 30 kun
         $dateFrom = $request->date_from ?? now()->subDays(30)->format('Y-m-d');
         $dateTo   = $request->date_to ?? now()->format('Y-m-d');
 
-        $leadFilter = function ($query) use ($departmentId, $dateFrom, $dateTo) {
-
-            $query->where('department_id', $departmentId);
+        $leadFilter = function ($query) use (
+            $departmentId,
+            $userId,
+            $dateFrom,
+            $dateTo
+        ) {
+            $query->where('department_id', $departmentId)
+                  ->where('user_id', $userId);
 
             if ($dateFrom) {
                 $query->whereDate('created_at', '>=', $dateFrom);
@@ -48,7 +54,6 @@ class LeadsController extends Controller
         $totalLeads = $statuses->sum('leads_count');
 
         return view('employee.leads.index', compact(
-            'department',
             'statuses',
             'totalLeads',
             'dateFrom',
@@ -94,20 +99,73 @@ class LeadsController extends Controller
     {
         $data = $request->validate([
             'status_id' => 'required|exists:lead_statuses,id',
+            'comment' => 'nullable|string|max:2000',
         ]);
 
-        // Faqat tanlangan bo‘limdagi leadni o‘zgartirishga ruxsat
-        if ($lead->department_id != session('department_id')) {
-            abort(403);
+        // Faqat o‘zi yaratgan va o‘z bo‘limiga tegishli lead
+        if (
+            $lead->user_id != auth()->id() ||
+            $lead->department_id != session('department_id')
+        ) {
+            abort(403, 'Bu leadni o‘zgartirishga ruxsatingiz yo‘q.');
         }
 
-        $lead->update([
-            'status_id' => $data['status_id'],
-            'status_updated_at' => now(),
-        ]);
+        // Status o‘zgarmagan bo‘lsa, tarixga yozmaymiz
+        if ((int) $lead->status_id === (int) $data['status_id']) {
+            return back()->with('info', 'Status o‘zgarmadi.');
+        }
+
+        DB::transaction(function () use ($lead, $data) {
+
+            $lead->update([
+                'status_id' => $data['status_id'],
+                'status_updated_at' => now(),
+            ]);
+
+            // Status o‘zgarishi tarixini saqlash
+            LeadHistory::create([
+                'lead_id' => $lead->id,
+                'status_id' => $data['status_id'],
+                'user_id' => auth()->id(),
+                'comment' => $data['comment'] ?? null,
+            ]);
+        });
 
         return redirect()
             ->route('employee.leads.index')
             ->with('success', 'Lead statusi muvaffaqiyatli o‘zgartirildi.');
+    }
+
+    public function history(Lead $lead)
+    {
+        // Faqat o‘zi yaratgan va o‘z bo‘limidagi lead
+        if (
+            $lead->user_id != auth()->id() ||
+            $lead->department_id != session('department_id')
+        ) {
+            abort(403);
+        }
+
+        $histories = LeadHistory::with([
+            'status:id,name,color',
+            'user:id,name',
+        ])
+            ->where('lead_id', $lead->id)
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(function ($history) {
+                return [
+                    'status' => $history->status?->name ?? 'Noma’lum',
+                    'color' => $history->status?->color ?? '#64748b',
+                    'comment' => $history->comment,
+                    'user' => $history->user?->name ?? 'Noma’lum xodim',
+                    'date' => $history->created_at->format('d.m.Y, H:i'),
+                ];
+            });
+
+        return response()->json([
+            'lead' => $lead->client_name,
+            'histories' => $histories,
+        ]);
     }
 }

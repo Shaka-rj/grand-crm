@@ -24,4 +24,6 @@ Route::middleware(['auth', 'role:employee'])
         Route::post('/employee/leads', [LeadsController::class, 'store'])->name('leads.store');
 
         Route::patch('/leads/{lead}', [LeadsController::class, 'update'])->name('leads.update');
+
+        Route::get('/leads/{lead}/history', [LeadsController::class, 'history',])->name('leads.history');
 });

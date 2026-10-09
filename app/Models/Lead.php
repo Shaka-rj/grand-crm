@@ -41,4 +41,11 @@ class Lead extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function histories()
+    {
+        return $this->hasMany(LeadHistory::class)
+            ->with(['status', 'user'])
+            ->orderByDesc('created_at');
+    }
 }

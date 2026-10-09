@@ -71,7 +71,7 @@
 
         <a href="#" class="menu-item">
             <i class="fa-solid fa-user"></i>
-            <span>Rajabov Shamshod</span>
+            <span>{{ $user?->name ?? 'Xodim' }}</span>
         </a>
         
         <a href="{{ route('employee.department.select') }}" class="menu-item">

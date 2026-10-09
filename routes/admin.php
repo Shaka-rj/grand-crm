@@ -51,4 +51,6 @@ Route::middleware(['auth', 'role:admin'])
         Route::put('/settings/password', [SettingsController::class, 'updatePassword'])
             ->name('settings.password.update');
 
+        Route::get('/leads/{lead}/history', [LeadController::class,'history',])->name('leads.history');
+
 });

@@ -50,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lead_statuses');
+        Schema::dropIfExists('leads');
     }
 };

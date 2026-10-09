@@ -169,15 +169,32 @@ href="{{ asset('css/employee/leads.css') }}"
 
                     </div>
 
-                <button
-                    type="button"
-                    class="lead-status-btn"
-                    data-lead="{{ $lead->client_name }}"
-                    data-lead-id="{{ $lead->id }}"
-                    data-status-id="{{ $lead->status_id }}"
-                >
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
+                    <div class="lead-card-actions">
+
+                        {{-- Statusni o‘zgartirish --}}
+                        <button
+                            type="button"
+                            class="lead-status-btn"
+                            data-lead="{{ $lead->client_name }}"
+                            data-lead-id="{{ $lead->id }}"
+                            data-status-id="{{ $lead->status_id }}"
+                            title="Statusni o‘zgartirish"
+                        >
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        {{-- Tarixni ko‘rish --}}
+                        <button
+                            type="button"
+                            class="lead-history-btn"
+                            data-history-url="{{ route('employee.leads.history', $lead) }}"
+                            data-lead="{{ $lead->client_name }}"
+                            title="Status tarixini ko‘rish"
+                        >
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -190,7 +207,26 @@ href="{{ asset('css/employee/leads.css') }}"
 @endforeach
 
 </div>
+<div class="history-modal" id="historyModal" hidden>
+    <div class="history-overlay"></div>
 
+    <div class="history-box">
+        <div class="history-header">
+            <div>
+                <h3>Status tarixi</h3>
+                <span id="historyLeadName"></span>
+            </div>
+
+            <button type="button" id="closeHistory">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="history-content" id="historyContent">
+            Tarix yuklanmoqda...
+        </div>
+    </div>
+</div>
 
 @include('employee.leads.edit')
 @include('employee.leads.create')

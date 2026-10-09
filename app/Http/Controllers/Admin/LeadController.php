@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Lead;
 use App\Models\Department;
 use App\Models\LeadStatus;
+use App\Models\LeadHistory;
 
 
 
@@ -78,5 +79,30 @@ class LeadController extends Controller
             'leads',
             'statuses'
         ));
+    }
+
+    public function history(Lead $lead)
+    {
+        $histories = LeadHistory::with([
+            'status:id,name,color',
+            'user:id,name',
+        ])
+            ->where('lead_id', $lead->id)
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(function ($history) {
+                return [
+                    'status' => $history->status?->name ?? 'Noma’lum',
+                    'color' => $history->status?->color ?? '#64748b',
+                    'comment' => $history->comment,
+                    'user' => $history->user?->name ?? 'Noma’lum xodim',
+                    'date' => $history->created_at->format('d.m.Y, H:i'),
+                ];
+            });
+
+        return response()->json([
+            'lead' => $lead->client_name,
+            'histories' => $histories,
+        ]);
     }
 }

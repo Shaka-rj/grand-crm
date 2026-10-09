@@ -169,6 +169,7 @@ href="{{ asset('css/admin/leads.css') }}"
                         <th>Bo‘lim</th>
                         <th>Xodim</th>
                         <th>Status</th>
+                        <th>Amallar</th>
                         <th>Sana</th>
                     </tr>
                 </thead>
@@ -223,6 +224,18 @@ href="{{ asset('css/admin/leads.css') }}"
                                 </span>
                             </td>
 
+                            <td>
+                                <button
+                                    type="button"
+                                    class="lead-history-btn"
+                                    data-history-url="{{ route('admin.leads.history', $lead) }}"
+                                    data-lead="{{ $lead->client_name }}"
+                                    title="Status tarixini ko‘rish"
+                                >
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                </button>
+                            </td>
+
                             <td class="lead-date">
                                 {{ $lead->created_at->format('d.m H:i') }}
                             </td>
@@ -232,7 +245,7 @@ href="{{ asset('css/admin/leads.css') }}"
                     @empty
 
                         <tr>
-                            <td colspan="7" class="empty-row">
+                            <td colspan="8" class="empty-row">
                                 Leadlar topilmadi
                             </td>
                         </tr>
@@ -253,5 +266,29 @@ href="{{ asset('css/admin/leads.css') }}"
     </div>
 
 </div>
+
+
+
+<div class="history-modal" id="historyModal" hidden>
+    <div class="history-overlay"></div>
+
+    <div class="history-box">
+        <div class="history-header">
+            <div>
+                <h3>Status tarixi</h3>
+                <span id="historyLeadName"></span>
+            </div>
+
+            <button type="button" id="closeHistory">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="history-content" id="historyContent">
+            Tarix yuklanmoqda...
+        </div>
+    </div>
+</div>
+
 <script src="{{ asset('js/admin/leads.js') }}"></script>
 @endsection
