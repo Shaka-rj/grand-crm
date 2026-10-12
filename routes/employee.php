@@ -21,7 +21,7 @@ Route::middleware(['auth', 'role:employee'])
         // leads
         Route::get('/leads', [LeadsController::class, 'index'])->name('leads.index');
 
-        Route::post('/employee/leads', [LeadsController::class, 'store'])->name('leads.store');
+        Route::post('/leads', [LeadsController::class, 'store'])->name('leads.store');
 
         Route::patch('/leads/{lead}', [LeadsController::class, 'update'])->name('leads.update');
 

@@ -16,12 +16,6 @@ href="{{ asset('css/employee/leads.css') }}"
 
     <div class="page-heading">
         <h1>Leadlar</h1>
-
-        <div class="breadcrumb">
-            <span>{{ $department->name }}</span>
-            <i class="fa-solid fa-chevron-right"></i>
-            <strong>Leadlar</strong>
-        </div>
     </div>
 
     <div class="page-actions">
