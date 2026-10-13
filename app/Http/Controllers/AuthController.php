@@ -10,7 +10,6 @@ class AuthController extends Controller
     public function showLogin()
     {
         if (auth()->check()) {
-
             $user = auth()->user();
 
             if ($user->role === 'admin') {
@@ -18,7 +17,19 @@ class AuthController extends Controller
             }
 
             if ($user->role === 'employee') {
-                return redirect()->route('employee.leads.index');
+                if (session()->has('department_id')) {
+                    $valid = $user->departments()
+                        ->where('departments.id', session('department_id'))
+                        ->exists();
+
+                    if ($valid) {
+                        return redirect()->route('employee.leads.index');
+                    }
+                }
+
+                session()->forget('department_id');
+
+                return redirect()->route('employee.department.select');
             }
         }
 

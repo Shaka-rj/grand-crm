@@ -20,8 +20,15 @@ href="{{ asset('css/admin/leads.css') }}"
             <p>Barcha bo‘limlardagi leadlar</p>
         </div>
 
-        <div class="total-leads">
-            Jami: <strong>{{ $leads->total() }}</strong>
+        <div class="page-header-actions">
+            <div class="total-leads">
+                Jami: <strong>{{ $leads->total() }}</strong>
+            </div>
+
+            <a href="{{ route('admin.leads.create') }}" class="lead-create-btn">
+                <i class="fa-solid fa-plus"></i>
+                Lead qo‘shish
+            </a>
         </div>
     </div>
 
@@ -169,7 +176,8 @@ href="{{ asset('css/admin/leads.css') }}"
                         <th>Bo‘lim</th>
                         <th>Xodim</th>
                         <th>Status</th>
-                        <th>Amallar</th>
+                        <th>Tarix</th>
+                        <th>Tahrirlash</th>
                         <th>Sana</th>
                     </tr>
                 </thead>
@@ -234,6 +242,16 @@ href="{{ asset('css/admin/leads.css') }}"
                                 >
                                     <i class="fa-solid fa-clock-rotate-left"></i>
                                 </button>
+                            </td>
+
+                            <td>
+                                <a
+                                href="{{ route('admin.leads.edit', $lead) }}"
+                                class="lead-edit-btn"
+                                title="Leadni tahrirlash"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
                             </td>
 
                             <td class="lead-date">

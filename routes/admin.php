@@ -1,10 +1,11 @@
+
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\LeadController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\SettingsController;
 
 Route::middleware(['auth', 'role:admin'])
@@ -12,12 +13,22 @@ Route::middleware(['auth', 'role:admin'])
     ->name('admin.')
     ->group(function () {
 
-        // Dashboard
+        /*
+        |--------------------------------------------------------------------------
+        | Dashboard
+        |--------------------------------------------------------------------------
+        */
+
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('dashboard');
 
 
-        // Employees
+        /*
+        |--------------------------------------------------------------------------
+        | Xodimlar
+        |--------------------------------------------------------------------------
+        */
+
         Route::get('/employees', [EmployeeController::class, 'index'])
             ->name('employees.index');
 
@@ -31,17 +42,55 @@ Route::middleware(['auth', 'role:admin'])
             ->name('employees.destroy');
 
 
-        // Leads
+        /*
+        |--------------------------------------------------------------------------
+        | Leadlar
+        |--------------------------------------------------------------------------
+        */
+
+        // Leadlar ro‘yxati
         Route::get('/leads', [LeadController::class, 'index'])
             ->name('leads.index');
 
-        // Departments
+        // Yangi lead qo‘shish
+        Route::get('/leads/create', [LeadController::class, 'create'])
+            ->name('leads.create');
+
+        Route::post('/leads', [LeadController::class, 'store'])
+            ->name('leads.store');
+
+        // Leadni tahrirlash
+        Route::get('/leads/{lead}/edit', [LeadController::class, 'edit'])
+            ->name('leads.edit');
+
+        Route::put('/leads/{lead}', [LeadController::class, 'update'])
+            ->name('leads.update');
+
+        // Leadni o‘chirish
+        Route::delete('/leads/{lead}', [LeadController::class, 'destroy'])
+            ->name('leads.destroy');
+
+        // Lead statuslari va izohlari tarixi
+        Route::get('/leads/{lead}/history', [LeadController::class, 'history'])
+            ->name('leads.history');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Bo‘limlar
+        |--------------------------------------------------------------------------
+        */
+
         Route::get('/department/select/{department}', [DepartmentController::class, 'select'])
-    ->name('department.select');
+            ->name('department.select');
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | Sozlamalar
+        |--------------------------------------------------------------------------
+        */
 
-        //Settings
         Route::get('/settings', [SettingsController::class, 'index'])
             ->name('settings.index');
 
@@ -51,6 +100,4 @@ Route::middleware(['auth', 'role:admin'])
         Route::put('/settings/password', [SettingsController::class, 'updatePassword'])
             ->name('settings.password.update');
 
-        Route::get('/leads/{lead}/history', [LeadController::class,'history',])->name('leads.history');
-
-});
+    });

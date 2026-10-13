@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -8,9 +9,14 @@ Route::middleware(['auth', 'role:employee'])
     ->prefix('employee')
     ->name('employee.')
     ->group(function () {
-        Route::get('/dashboard', function () {
-            return redirect()->route('employee.leads.index');
-        })->name('dashboard');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Bo‘lim tanlash
+        |--------------------------------------------------------------------------
+        | Xodim tizimga kirganda bo‘lim tanlashi uchun.
+        | Bu route'lar employee.department middleware'dan tashqarida.
+        */
 
         Route::get('/department/select', [AuthController::class, 'selectDepartment'])
             ->name('department.select');
@@ -18,12 +24,43 @@ Route::middleware(['auth', 'role:employee'])
         Route::post('/department/store', [AuthController::class, 'storeDepartment'])
             ->name('department.store');
 
-        // leads
-        Route::get('/leads', [LeadsController::class, 'index'])->name('leads.index');
 
-        Route::post('/leads', [LeadsController::class, 'store'])->name('leads.store');
+        /*
+        |--------------------------------------------------------------------------
+        | Bo‘lim tanlangandan keyingi sahifalar
+        |--------------------------------------------------------------------------
+        */
 
-        Route::patch('/leads/{lead}', [LeadsController::class, 'update'])->name('leads.update');
+        Route::middleware('employee.department')->group(function () {
 
-        Route::get('/leads/{lead}/history', [LeadsController::class, 'history',])->name('leads.history');
-});
+            // Dashboard
+            Route::get('/dashboard', function () {
+                return redirect()->route('employee.leads.index');
+            })->name('dashboard');
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Leadlar
+            |--------------------------------------------------------------------------
+            */
+
+            // Leadlar ro‘yxati
+            Route::get('/leads', [LeadsController::class, 'index'])
+                ->name('leads.index');
+
+            // Yangi lead qo‘shish
+            Route::post('/leads', [LeadsController::class, 'store'])
+                ->name('leads.store');
+
+            // Lead statusini va izohini yangilash
+            Route::patch('/leads/{lead}', [LeadsController::class, 'update'])
+                ->name('leads.update');
+
+            // Lead tarixini ko‘rish
+            Route::get('/leads/{lead}/history', [LeadsController::class, 'history'])
+                ->name('leads.history');
+
+        });
+
+    });

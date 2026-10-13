@@ -18,27 +18,20 @@ class EnsureEmployeeDepartment
 
         $departmentId = session('department_id');
 
-        $hasDepartment = $departmentId
-            && $user->departments()
+        // Tanlangan bo‘lim xodimga tegishlimi?
+        if ($departmentId) {
+            $valid = $user->departments()
                 ->where('departments.id', $departmentId)
                 ->exists();
 
-        if (!$hasDepartment) {
-            session()->forget('department_id');
-
-            $departments = $user->departments;
-
-            if ($departments->count() === 1) {
-                session([
-                    'department_id' => $departments->first()->id,
-                ]);
-            } elseif ($departments->count() > 1) {
-                return redirect()->route('employee.department.select');
-            } else {
-                abort(403, 'Sizga hech qanday bo‘lim biriktirilmagan.');
+            if ($valid) {
+                return $next($request);
             }
+
+            session()->forget('department_id');
         }
 
-        return $next($request);
+        // Sessionda bo‘lim yo‘q — tanlash sahifasiga
+        return redirect()->route('employee.department.select');
     }
 }
