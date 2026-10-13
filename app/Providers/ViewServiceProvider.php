@@ -23,15 +23,18 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         // Employee uchun
-        View::composer('employee.*', function ($view) {
+        View::composer([
+            'employee.*',
+            'components.employee.sidebar',
+        ], function ($view) {
             $user = auth()->user();
 
             $department = null;
 
-            if (session()->has('department_id')) {
-                $department = Department::find(
-                    session('department_id')
-                );
+            if ($user && session()->has('department_id')) {
+                $department = $user->departments()
+                    ->where('departments.id', session('department_id'))
+                    ->first();
             }
 
             $view->with([

@@ -93,7 +93,7 @@
 
     <button
     type="submit"
-    class="lead-modal-submit"
+    class="lead-modal-submit" id="submitBtn"
     >
     <i class="fa-solid fa-plus"></i>
     Lead qo‘shish

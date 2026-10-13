@@ -200,3 +200,18 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.querySelector('.history-overlay')
         .addEventListener('click', closeModal);
 });
+
+
+
+document.getElementById('createLeadForm').addEventListener('submit', function () {
+    const form = this;
+    const btn = document.getElementById('submitBtn');
+
+    if (form.dataset.submitting === 'true') {
+        return;
+    }
+
+    form.dataset.submitting = 'true';
+    btn.disabled = true;
+    btn.textContent = 'Saqlanmoqda...';
+});

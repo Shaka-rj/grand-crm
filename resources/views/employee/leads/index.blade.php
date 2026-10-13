@@ -4,9 +4,8 @@
 
 <link
 rel="stylesheet"
-href="{{ asset('css/employee/leads.css') }}"
+href="{{ asset('css/employee/leads.css')?v={{ filemtime(public_path('css/employee/leads.css')) }}"
 >
-
 @endpush
 
 

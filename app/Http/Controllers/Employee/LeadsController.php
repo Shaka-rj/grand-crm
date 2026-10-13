@@ -10,6 +10,7 @@ use App\Models\Department;
 use App\Models\LeadStatus;
 use App\Models\LeadHistory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class LeadsController extends Controller
 {
@@ -71,7 +72,6 @@ class LeadsController extends Controller
         ]);
 
         $user = auth()->user();
-
         $departmentId = session('department_id');
 
         if (!$departmentId) {
@@ -80,7 +80,7 @@ class LeadsController extends Controller
                 ->with('error', 'Avval bo‘limni tanlang.');
         }
 
-        $lead = Lead::create([
+        Lead::create([
             'client_name' => $data['client_name'],
             'phone' => $data['phone'],
             'travel_date' => $data['travel_date'] ?? null,
@@ -108,11 +108,6 @@ class LeadsController extends Controller
             $lead->department_id != session('department_id')
         ) {
             abort(403, 'Bu leadni o‘zgartirishga ruxsatingiz yo‘q.');
-        }
-
-        // Status o‘zgarmagan bo‘lsa, tarixga yozmaymiz
-        if ((int) $lead->status_id === (int) $data['status_id']) {
-            return back()->with('info', 'Status o‘zgarmadi.');
         }
 
         DB::transaction(function () use ($lead, $data) {
