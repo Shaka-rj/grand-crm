@@ -10,8 +10,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <link rel="stylesheet"
-          href="{{ asset('css/auth.css') }}?v={{ trim(file_get_contents(public_path('cssversion.txt'))) }}">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}?v={{ filemtime(public_path('css/auth.css')) }}">
 </head>
 <body>
 
