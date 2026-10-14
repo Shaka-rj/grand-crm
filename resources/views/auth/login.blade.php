@@ -96,13 +96,19 @@
                 </div>
 
 
-                <button type="submit" class="auth-button">
+            <div class="auth-buttons">
 
+                <button type="submit" name="action" value="login" class="auth-button">
                     Kirish
-
                     <i class="fa-solid fa-arrow-right"></i>
-
                 </button>
+
+                <button type="submit" name="action" value="attendance" class="attendance-button">
+                    Davomat
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+
+            </div>
 
             </form>
 

@@ -358,6 +358,59 @@ a {
 
 
 /* =========================
+   AUTH BUTTONS
+========================= */
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.auth-buttons .auth-button,
+.auth-buttons .attendance-button {
+    width: 100%;
+    height: 45px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.auth-buttons .auth-button {
+    border: 0;
+    background: var(--primary);
+    color: #fff;
+}
+
+.auth-buttons .auth-button:hover {
+    background: var(--primary-hover);
+}
+
+.auth-buttons .attendance-button {
+    border: 1px solid var(--primary);
+    background: #fff;
+    color: var(--primary);
+}
+
+.auth-buttons .attendance-button:hover {
+    background: #f0f1fa;
+}
+
+.auth-buttons button i {
+    font-size: 11px;
+}
+
+
+
+/* =========================
    DEPARTMENT
 ========================= */
 .department-list {

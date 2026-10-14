@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Employee\AttendanceController;
 
 Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
@@ -40,6 +41,27 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])
             ->name('employees.destroy');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Davomat
+        |--------------------------------------------------------------------------
+        */
+        Route::get('/attendance', [EmployeeController::class, 'attendance'])
+            ->name('attendance.index');
+        Route::post('/attendance/{attendance}/approve', [
+            EmployeeController::class, 'attendanceapprove'
+        ])->name('attendance.approve');
+
+        Route::post('/attendance/{attendance}/reject', [
+            EmployeeController::class, 'attendancereject'
+        ])->name('attendance.reject');
+
+        Route::get('/attendance/{attendance}/photo', [
+            AttendanceController::class,
+            'photo',
+        ])->name('attendance.photo');
 
 
         /*

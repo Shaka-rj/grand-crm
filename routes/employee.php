@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Employee\LeadsController;
+use App\Http\Controllers\Employee\AttendanceController;
 
 Route::middleware(['auth', 'role:employee'])
     ->prefix('employee')
@@ -24,6 +25,21 @@ Route::middleware(['auth', 'role:employee'])
         Route::post('/department/store', [AuthController::class, 'storeDepartment'])
             ->name('department.store');
 
+        /*
+        |--------------------------------------------------------------------------
+        | Davomat
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/attendance', [AttendanceController::class, 'show'])
+            ->name('attendance.show');
+
+        Route::get('/attendance/list', [AttendanceController::class, 'list'])
+            ->name('attendance.list');
+
+        Route::post('/attendance', [AttendanceController::class, 'store'])
+            ->middleware('throttle:10,1')
+            ->name('attendance.store');
 
         /*
         |--------------------------------------------------------------------------

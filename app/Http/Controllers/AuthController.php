@@ -9,29 +9,7 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
-        if (auth()->check()) {
-            $user = auth()->user();
-
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
-            }
-
-            if ($user->role === 'employee') {
-                if (session()->has('department_id')) {
-                    $valid = $user->departments()
-                        ->where('departments.id', session('department_id'))
-                        ->exists();
-
-                    if ($valid) {
-                        return redirect()->route('employee.leads.index');
-                    }
-                }
-
-                session()->forget('department_id');
-
-                return redirect()->route('employee.department.select');
-            }
-        }
+        Auth::logout();
 
         return view('auth.login');
     }
@@ -41,7 +19,12 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
+            'action' => ['required', 'in:login,attendance'],
         ]);
+
+        $action = $credentials['action'];
+
+        unset($credentials['action']);
 
         if (!Auth::attempt($credentials, true)) {
             return back()
@@ -63,18 +46,30 @@ class AuthController extends Controller
             ]);
         }
 
+        // Davomat tugmasi bosilgan bo‘lsa
+        if ($action === 'attendance') {
+            if ($user->role !== 'employee') {
+                Auth::logout();
+
+                return back()->withErrors([
+                    'username' => 'Davomat faqat xodimlar uchun mavjud.',
+                ]);
+            }
+
+            return redirect()->route('employee.attendance.show');
+        }
+
+        // Oddiy kirish
         if ($user->role === 'admin') {
             return redirect()->route('admin.dashboard');
         }
 
         if ($user->role === 'employee') {
-
             $departments = $user->departments;
 
             if ($departments->count() === 1) {
-
                 session([
-                    'department_id' => $departments->first()->id
+                    'department_id' => $departments->first()->id,
                 ]);
 
                 return redirect()->route('employee.leads.index');
