@@ -113,17 +113,16 @@ function togglePassword() {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('loginForm');
 
     if (!form) return;
 
-    // Enter bosilganda avtomatik yuborishni to‘xtatish
-    form.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-        }
+    form.addEventListener('submit', function () {
+        const username = document.getElementById('login');
+        const password = document.getElementById('password');
+
+        username.value = username.value.trim();
     });
 });
 
