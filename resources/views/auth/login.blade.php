@@ -111,6 +111,33 @@ function togglePassword() {
     icon.classList.toggle('fa-eye', !showPassword);
     icon.classList.toggle('fa-eye-slash', showPassword);
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('loginForm');
+
+    if (!form) return;
+
+    // Enter bosilganda formani avtomatik yuborishni to‘xtatish
+    form.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+    });
+
+    // Faqat tugma bosilganda yuborishga ruxsat berish
+    form.addEventListener('submit', function (event) {
+        const submitter = event.submitter;
+
+        if (
+            !submitter ||
+            !['login', 'attendance'].includes(submitter.value)
+        ) {
+            event.preventDefault();
+        }
+    });
+});
+
 </script>
 
 </body>
