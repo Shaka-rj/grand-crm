@@ -62,10 +62,10 @@ class AuthController extends Controller
                     'department_id' => $departments->first()->id,
                 ]);
 
-                return redirect()->route('employee.leads.index');
+                //return redirect()->route('employee.leads.index');
             }
 
-            if ($departments->count() > 1) {
+            if ($departments->count() > 0) {
                 return redirect()->route('employee.department.select');
             }
 
