@@ -44,7 +44,7 @@
                             id="login"
                             name="username"
                             placeholder="Loginni kiriting"
-                            autocomplete="username"
+                            autocomplete="off"
                             required>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                             id="password"
                             name="password"
                             placeholder="Parolni kiriting"
-                            autocomplete="current-password"
+                            autocomplete="off"
                             required>
 
                         <button
