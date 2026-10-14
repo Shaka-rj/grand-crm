@@ -38,62 +38,62 @@
             </div>
 
 
-            <form method="POST" action="{{ route('login.store') }}">
-                @csrf
-                <div class="form-group">
+            
+    <form method="POST" action="{{ route('login.store') }}" id="loginForm">
+        @csrf
 
-                    <label for="login">
-                        Login
-                    </label>
+        <div class="form-group">
+            <label for="login">Login</label>
+            <div class="input-wrapper">
+                <i class="fa-regular fa-user"></i>
+                <input
+                    type="text"
+                    id="login"
+                    name="username"
+                    placeholder="Loginni kiriting"
+                    autocomplete="username"
+                    required>
+            </div>
+        </div>
 
-                    <div class="input-wrapper">
+        <div class="form-group">
+            <label for="password">Parol</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Parolni kiriting"
+                    autocomplete="current-password"
+                    required>
 
-                        <i class="fa-regular fa-user"></i>
+                <button type="button"
+                        class="password-toggle"
+                        onclick="togglePassword()">
+                    <i class="fa-regular fa-eye"></i>
+                </button>
+            </div>
+        </div>
 
-                        <input
-                            type="text"
-                            id="login"
-                            name="username"
-                            placeholder="Loginni kiriting"
-                            autocomplete="username"
-                            required
-                        >
+        <div class="auth-buttons">
+            <button type="submit"
+                    name="action"
+                    value="login"
+                    class="auth-button">
+                Kirish <i class="fa-solid fa-arrow-right"></i>
+            </button>
 
-                    </div>
+            <button type="submit"
+                    name="action"
+                    value="attendance"
+                    class="attendance-button"
+                    formnovalidate>
+                Davomat <i class="fa-solid fa-camera"></i>
+            </button>
+        </div>
+    </form>
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="password">
-                        Parol
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <i class="fa-solid fa-lock"></i>
-
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Parolni kiriting"
-                            autocomplete="current-password"
-                            required
-                        >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            onclick="togglePassword()"
-                        >
-                            <i class="fa-regular fa-eye"></i>
-                        </button>
-
-                    </div>
-
-                </div>
 
 
             <div class="auth-buttons">
@@ -143,6 +143,27 @@ function togglePassword() {
     }
 
 }
+
+
+const loginForm = document.getElementById('loginForm');
+
+loginForm.addEventListener('submit', function (event) {
+    const submitter = event.submitter;
+
+    if (!submitter) {
+        event.preventDefault();
+        return;
+    }
+
+    // Faqat foydalanuvchi bosgan tugma orqali yuboriladi.
+    if (
+        submitter.value !== 'login' &&
+        submitter.value !== 'attendance'
+    ) {
+        event.preventDefault();
+    }
+});
+
 
 </script>
 
