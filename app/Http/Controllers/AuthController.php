@@ -22,7 +22,7 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
-            'action' => ['required', 'in:login,attendance'],
+            'action' => ['required', 'string'],
         ]);
 
         $action = $credentials['action'];
@@ -47,19 +47,6 @@ class AuthController extends Controller
             return back()->withErrors([
                 'username' => 'Hisobingiz faol emas.',
             ]);
-        }
-
-        // Davomat tugmasi bosilgan bo‘lsa
-        if ($action === 'attendance') {
-            if ($user->role !== 'employee') {
-                Auth::logout();
-
-                return back()->withErrors([
-                    'username' => 'Davomat faqat xodimlar uchun mavjud.',
-                ]);
-            }
-
-            return redirect()->route('employee.attendance.show');
         }
 
         // Oddiy kirish

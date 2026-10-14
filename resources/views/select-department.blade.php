@@ -15,7 +15,6 @@
 
     <div class="auth-page">
         <div class="auth-right">
-
             <div class="auth-card department-card">
                 <div class="auth-heading">
                     <h1>Bo‘limni tanlang</h1>
@@ -25,6 +24,12 @@
                     </p>
 
                 </div>
+                <a href="{{ route('employee.attendance.show') }}"
+                   class="attendance-button">
+                    Davomat
+                    <i class="fa-solid fa-camera"></i>
+                </a>
+                <br><br>
 
                 <form method="POST" action="{{ route('employee.department.store') }}">
 

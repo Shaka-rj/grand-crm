@@ -44,7 +44,7 @@
                             id="login"
                             name="username"
                             placeholder="Loginni kiriting"
-                            autocomplete="off"
+                            autocomplete="username"
                             required>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                             id="password"
                             name="password"
                             placeholder="Parolni kiriting"
-                            autocomplete="off"
+                            autocomplete="current-password"
                             required>
 
                         <button
@@ -82,16 +82,6 @@
                         Kirish
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
-
-                    <button
-                        type="submit"
-                        name="action"
-                        value="attendance"
-                        class="attendance-button"
-                        formnovalidate>
-                        Davomat
-                        <i class="fa-solid fa-camera"></i>
-                    </button>
                 </div>
             </form>
 
@@ -111,20 +101,6 @@ function togglePassword() {
     icon.classList.toggle('fa-eye', !showPassword);
     icon.classList.toggle('fa-eye-slash', showPassword);
 }
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('loginForm');
-
-    if (!form) return;
-
-    form.addEventListener('submit', function () {
-        const username = document.getElementById('login');
-        const password = document.getElementById('password');
-
-        username.value = username.value.trim();
-    });
-});
 
 
 </script>
