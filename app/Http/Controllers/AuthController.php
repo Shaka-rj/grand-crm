@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         unset($credentials['action']);
 
-        if (!Auth::attempt($credentials, true)) {
+        if (!Auth::attempt($credentials)) {
             return back()
                 ->withErrors([
                     'username' => 'Login yoki parol noto‘g‘ri.',
