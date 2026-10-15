@@ -85,6 +85,12 @@
                 </div>
             </form>
 
+        @if ($errors->any())
+            <div class="login-error">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
         </div>
     </div>
 </div>
