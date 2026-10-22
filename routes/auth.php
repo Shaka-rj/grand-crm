@@ -13,3 +13,12 @@ Route::post('/login', [AuthController::class, 'login'])
 
 Route::get('/logout', [AuthController::class, 'logout'])
     ->name('logout');
+
+Route::get('/force-logout', function (Request $request) {
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('login', ['clean' => 1]);
+})->name('force.logout');

@@ -9,10 +9,9 @@ class AuthController extends Controller
 {
     public function showLogin(Request $request)
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        if (!$request->boolean('clean')) {
+            return redirect()->route('force.logout');
+        }
 
         return view('auth.login');
     }
