@@ -45,6 +45,29 @@ class LeadController extends Controller
             }
         }
 
+        $employees = User::where('role', 'employee')
+            ->orderBy('name')
+            ->get();
+
+        if (request()->has('user_ids')) {
+            $userIds = request()->input('user_ids', []);
+
+            $query->where(function ($q) use ($userIds) {
+                if (in_array('0', $userIds)) {
+                    $q->orWhereNull('user_id');
+                }
+
+                $employeeIds = array_filter(
+                    $userIds,
+                    fn ($id) => $id !== '0'
+                );
+
+                if (!empty($employeeIds)) {
+                    $q->orWhereIn('user_id', $employeeIds);
+                }
+            });
+        }
+
         // Status
         if ($request->filled('status_ids')) {
             $query->whereIn(
@@ -78,7 +101,8 @@ class LeadController extends Controller
 
         return view('admin.leads.index', compact(
             'leads',
-            'statuses'
+            'statuses',
+            'employees'
         ));
     }
 

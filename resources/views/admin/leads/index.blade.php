@@ -78,6 +78,54 @@ href="{{ asset('css/admin/leads.css') }}"
 
         </div>
 
+        
+        <div class="filter-item employee-filter">
+
+            <label>Xodimlar</label>
+
+            <button type="button" class="filter-select-btn">
+                <span id="employeeFilterText">Xodimni tanlang</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div class="employee-dropdown">
+
+                @foreach($employees as $employee)
+
+                    <label class="check-option">
+
+                        <input
+                            type="checkbox"
+                            name="user_ids[]"
+                            value="{{ $employee->id }}"
+                            data-name="{{ $employee->name }}"
+                            {{ in_array(
+                                $employee->id,
+                                request('user_ids', [])
+                            ) ? 'checked' : '' }}
+                        >
+
+                        <span>{{ $employee->name }}</span>
+
+                    </label>
+
+                @endforeach
+
+                <label class="check-option">
+                    <input
+                        type="checkbox"
+                        name="user_ids[]"
+                        value="0"
+                        {{ in_array('0', array_map('strval', request('user_ids', []))) ? 'checked' : '' }}
+                    >
+                    <span>Biriktirilmagan</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
 
         <div class="filter-item status-filter">
 

@@ -810,3 +810,97 @@
     color: #dc2626;
     font-size: 12px;
 }
+
+
+/* Xodimlar filtri */
+.employee-filter {
+    position: relative;
+    min-width: 200px;
+}
+
+.employee-filter .filter-select-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 14px;
+    background: #fff;
+    border: 1px solid #dce1eb;
+    border-radius: 8px;
+    color: #343a40;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.employee-filter .filter-select-btn:hover,
+.employee-filter .filter-select-btn:focus {
+    border-color: #4f46e5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+.employee-filter .filter-select-btn i {
+    color: #7b8495;
+    font-size: 11px;
+}
+
+.employee-filter .employee-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    min-width: 230px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 7px;
+    background: #fff;
+    border: 1px solid #e1e5ed;
+    border-radius: 9px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    z-index: 100;
+}
+
+.employee-filter.open .employee-dropdown {
+    display: block;
+}
+
+.employee-filter .check-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.employee-filter .check-option:hover {
+    background: #f3f5fa;
+}
+
+.employee-filter .check-option input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    accent-color: #4f46e5;
+    cursor: pointer;
+}
+
+.employee-filter .check-option span {
+    overflow-wrap: anywhere;
+}
+
+/* Dropdown ichidagi scrollbar */
+.employee-filter .employee-dropdown::-webkit-scrollbar {
+    width: 5px;
+}
+
+.employee-filter .employee-dropdown::-webkit-scrollbar-thumb {
+    background: #cbd1dc;
+    border-radius: 10px;
+}

@@ -125,3 +125,71 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const filter = document.querySelector('.employee-filter');
+
+    if (!filter) return;
+
+    const button = filter.querySelector('.filter-select-btn');
+    const dropdown = filter.querySelector('.employee-dropdown');
+    const text = document.getElementById('employeeFilterText');
+    const checkboxes = dropdown.querySelectorAll(
+        'input[type="checkbox"]'
+    );
+
+    // Dropdownni ochish va yopish
+    button.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        // Boshqa filter dropdownlarini yopish
+        document.querySelectorAll(
+            '.department-filter, .status-filter'
+        ).forEach(function (item) {
+            item.classList.remove('open');
+        });
+
+        filter.classList.toggle('open');
+    });
+
+    // Tanlangan xodimlarni ko'rsatish
+    function updateEmployeeText() {
+        const selected = Array.from(checkboxes)
+            .filter(function (checkbox) {
+                return checkbox.checked;
+            })
+            .map(function (checkbox) {
+                return checkbox.value === '0'
+                    ? 'Biriktirilmagan'
+                    : checkbox.dataset.name;
+            });
+
+        if (selected.length === 0) {
+            text.textContent = 'Xodimni tanlang';
+        } else if (selected.length === 1) {
+            text.textContent = selected[0];
+        } else {
+            text.textContent = selected.length + ' ta tanlandi';
+        }
+    }
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', updateEmployeeText);
+    });
+
+    // Sahifa yuklanganda tanlanganlarni chiqarish
+    updateEmployeeText();
+
+    // Dropdown tashqarisiga bosilganda yopish
+    document.addEventListener('click', function (e) {
+        if (!filter.contains(e.target)) {
+            filter.classList.remove('open');
+        }
+    });
+
+    // Dropdown ichiga bosish uni yopmasin
+    dropdown.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
+});
