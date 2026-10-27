@@ -1,0 +1,278 @@
+
+/* =========================
+   EMPLOYEE DAILY REPORTS
+========================= */
+
+.daily-report-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    color: #202641;
+    font-family: inherit;
+}
+
+.daily-report-page h1 {
+    margin: 0 0 8px;
+    color: #171b4a;
+    font-size: 26px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+}
+
+.daily-report-page > p {
+    margin: 0 0 24px;
+    color: #747b91;
+    font-size: 14px;
+}
+
+/* Xabarlar */
+
+.daily-report-page .alert {
+    margin: 16px 0;
+    padding: 13px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.daily-report-page .alert-success {
+    color: #147447;
+    background: #eaf8f0;
+    border: 1px solid #c9eed9;
+}
+
+.daily-report-page .alert-danger {
+    color: #b42335;
+    background: #fff0f1;
+    border: 1px solid #ffd5d9;
+}
+
+/* Hisobot yaratish tugmalari */
+
+.report-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.report-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 11px 18px;
+    border: 1px solid #252b68;
+    border-radius: 9px;
+    background: #252b68;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+}
+
+.report-actions a:hover {
+    background: #343b83;
+    transform: translateY(-1px);
+}
+
+/* Hisobotlar jadvali */
+
+.daily-report-page table {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #e7eaf2;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.daily-report-page thead {
+    background: #f5f6fb;
+}
+
+.daily-report-page th {
+    padding: 15px 16px;
+    color: #626a83;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: .35px;
+    border-bottom: 1px solid #e7eaf2;
+}
+
+.daily-report-page td {
+    padding: 16px;
+    color: #3d435b;
+    font-size: 14px;
+    border-bottom: 1px solid #edf0f5;
+    vertical-align: middle;
+}
+
+.daily-report-page tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.daily-report-page tbody tr:hover {
+    background: #fafbff;
+}
+
+.daily-report-page td a {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 7px;
+    background: #eef0ff;
+    color: #303879;
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.daily-report-page td a:hover {
+    background: #dfe3ff;
+}
+
+.daily-report-page td[colspan] {
+    padding: 36px 16px;
+    color: #858ba0;
+    text-align: center;
+}
+
+/* Hisobot formasi */
+
+.daily-report-page form {
+    max-width: 850px;
+    margin-top: 24px;
+    padding: 26px;
+    border: 1px solid #e7eaf2;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 5px 24px rgba(28, 35, 78, .04);
+}
+
+.daily-report-page .form-group {
+    margin-bottom: 22px;
+}
+
+.daily-report-page .form-group label {
+    display: block;
+    margin-bottom: 9px;
+    color: #303650;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.daily-report-page .form-control {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding: 11px 13px;
+    border: 1px solid #dce1ec;
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    color: #252a40;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.daily-report-page textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.daily-report-page .form-control:focus {
+    border-color: #525bb4;
+    box-shadow: 0 0 0 3px rgba(82, 91, 180, .12);
+}
+
+.daily-report-page .form-control::placeholder {
+    color: #a1a7b8;
+}
+
+.daily-report-page .text-danger {
+    margin-top: 6px;
+    color: #d92d45;
+    font-size: 12px;
+}
+
+/* Saqlash tugmasi */
+
+.daily-report-page form button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 9px;
+    background: #252b68;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+}
+
+.daily-report-page form button[type="submit"]:hover {
+    background: #343b83;
+    transform: translateY(-1px);
+}
+
+/* Sahifalash */
+
+.daily-report-page nav[role="navigation"] {
+    margin-top: 22px;
+}
+
+.daily-report-page nav[role="navigation"] a,
+.daily-report-page nav[role="navigation"] span {
+    border-radius: 6px;
+}
+
+/* Mobil qurilmalar */
+
+@media (max-width: 768px) {
+    .daily-report-page {
+        padding: 16px 12px;
+    }
+
+    .daily-report-page h1 {
+        font-size: 22px;
+    }
+
+    .report-actions {
+        flex-direction: column;
+    }
+
+    .report-actions a {
+        width: 100%;
+    }
+
+    .daily-report-page form {
+        padding: 18px 14px;
+    }
+
+    .daily-report-page table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .daily-report-page th,
+    .daily-report-page td {
+        padding: 12px;
+    }
+
+    .daily-report-page form button[type="submit"] {
+        width: 100%;
+    }
+}

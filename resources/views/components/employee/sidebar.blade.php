@@ -13,7 +13,7 @@
     <!-- MENU -->
     <nav class="sidebar-menu">
 
-        <a href="{{ route('employee.leads.index') }}" class="menu-item active">
+        <a href="{{ route('employee.leads.index') }}" class="menu-item {{ request()->routeIs('employee.leads.*') ? 'active' : '' }}">
             <i class="fa-solid fa-user-group"></i>
             <span>Leadlar</span>
         </a>
@@ -43,7 +43,7 @@
             <span>Safarlar</span>
         </a>
 
-        <a href="#" class="menu-item">
+        <a href="#" class="menu-item" style="color: #666">
             <i class="fa-solid fa-list-check"></i>
             <span>Vazifalar</span>
         </a>
@@ -53,7 +53,7 @@
             <span>Kalendar</span>
         </a>
 
-        <a href="#" class="menu-item" style="color: #666">
+        <a href="{{ route('employee.daily-reports.index') }}" class="menu-item {{ request()->routeIs('employee.daily-reports.*') ? 'active' : '' }}">
             <i class="fa-solid fa-chart-column"></i>
             <span>Hisobotlar</span>
         </a>

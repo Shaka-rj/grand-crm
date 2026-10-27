@@ -1,0 +1,453 @@
+/* =========================
+   DAILY REPORT FIELDS
+========================= */
+
+.admin-daily-reports {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    color: #202338;
+    box-sizing: border-box;
+}
+
+.admin-daily-reports h1 {
+    margin: 0 0 25px;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.admin-daily-reports h2 {
+    margin: 0 0 18px;
+    font-size: 17px;
+    font-weight: 650;
+}
+
+.admin-daily-reports form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-daily-reports input:not([type="checkbox"]),
+.admin-daily-reports select,
+.admin-daily-reports textarea {
+    min-width: 0;
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #dfe3ed;
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    color: #202338;
+    font-family: inherit;
+    font-size: 13px;
+    box-sizing: border-box;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.admin-daily-reports input:not([type="checkbox"]):focus,
+.admin-daily-reports select:focus,
+.admin-daily-reports textarea:focus {
+    border-color: #5359b8;
+    box-shadow: 0 0 0 3px rgba(83, 89, 184, .1);
+}
+
+.admin-daily-reports textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.admin-daily-reports label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #555b70;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.admin-daily-reports input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: #5359b8;
+    cursor: pointer;
+}
+
+.admin-daily-reports button {
+    min-height: 40px;
+    padding: 10px 17px;
+    border: 0;
+    border-radius: 8px;
+    background: #252958;
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+}
+
+.admin-daily-reports button:hover {
+    background: #3b4287;
+}
+
+.admin-daily-reports button:active {
+    transform: scale(.98);
+}
+
+.admin-daily-reports > form {
+    padding: 22px;
+    margin-bottom: 30px;
+    border: 1px solid #e8eaf1;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(25, 32, 75, .04);
+}
+
+.admin-daily-reports > form input[name="label"] {
+    flex: 2 1 220px;
+}
+
+.admin-daily-reports > form select {
+    flex: 1 1 180px;
+}
+
+.admin-daily-reports > form textarea {
+    flex: 1 1 100%;
+}
+
+.admin-daily-reports > form input[type="number"] {
+    width: 100px;
+}
+
+.admin-daily-reports hr {
+    height: 1px;
+    margin: 24px 0;
+    border: 0;
+    background: #e9ebf2;
+}
+
+.admin-daily-reports .alert {
+    margin-bottom: 20px;
+    padding: 13px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.admin-daily-reports .alert-success {
+    border: 1px solid #b8e6cd;
+    background: #effaf4;
+    color: #167747;
+}
+
+.admin-daily-reports .field-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid #e5e8f0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(25, 32, 75, .035);
+}
+
+.admin-daily-reports .field-item form:first-child {
+    display: grid;
+    grid-template-columns: minmax(180px, 2fr) minmax(150px, 1fr);
+    gap: 13px;
+}
+
+.admin-daily-reports .field-item form:first-child textarea {
+    grid-column: 1 / -1;
+}
+
+.admin-daily-reports .field-item form:first-child input[type="number"] {
+    width: 100%;
+}
+
+.admin-daily-reports .field-item form:last-child {
+    justify-content: flex-end;
+    padding-top: 12px;
+    border-top: 1px solid #eff0f5;
+}
+
+.admin-daily-reports .field-item form:last-child button {
+    background: #fff0f0;
+    color: #c53232;
+}
+
+.admin-daily-reports .field-item form:last-child button:hover {
+    background: #ffe0e0;
+}
+
+@media (max-width: 768px) {
+    .admin-daily-reports {
+        padding: 16px;
+    }
+
+    .admin-daily-reports h1 {
+        font-size: 21px;
+    }
+
+    .admin-daily-reports > form {
+        padding: 16px;
+    }
+
+    .admin-daily-reports .field-item {
+        padding: 14px;
+    }
+
+    .admin-daily-reports .field-item form:first-child {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-daily-reports .field-item form:first-child textarea {
+        grid-column: auto;
+    }
+
+    .admin-daily-reports button {
+        min-height: 42px;
+    }
+}
+
+@media (max-width: 420px) {
+    .admin-daily-reports {
+        padding: 12px;
+    }
+
+    .admin-daily-reports .field-item form:last-child button {
+        width: 100%;
+    }
+
+    .admin-daily-reports .field-item form:last-child {
+        flex-direction: column;
+    }
+}
+
+/* =========================
+   ADMIN DAILY REPORT LIST
+========================= */
+
+.admin-daily-reports > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 16px;
+    margin-bottom: 22px;
+    border-radius: 8px;
+    background: #252958;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s;
+}
+
+.admin-daily-reports > a:hover {
+    background: #3b4287;
+}
+
+.admin-daily-reports > form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+    margin-bottom: 24px;
+    border: 1px solid #e5e8f0;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.admin-daily-reports > form input,
+.admin-daily-reports > form select {
+    flex: 1 1 170px;
+    width: auto;
+    min-height: 42px;
+}
+
+.admin-daily-reports > form button {
+    min-height: 42px;
+}
+
+.admin-daily-reports table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid #e5e8f0;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 13px;
+}
+
+.admin-daily-reports table thead {
+    background: #f5f6fb;
+}
+
+.admin-daily-reports table th {
+    padding: 15px 16px;
+    color: #555b70;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.admin-daily-reports table td {
+    padding: 15px 16px;
+    border-top: 1px solid #edf0f5;
+    color: #34384d;
+    vertical-align: middle;
+}
+
+.admin-daily-reports table tbody tr {
+    transition: background .15s;
+}
+
+.admin-daily-reports table tbody tr:hover {
+    background: #f8f9fd;
+}
+
+.admin-daily-reports table td a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 12px;
+    border: 1px solid #dfe2f5;
+    border-radius: 7px;
+    background: #f1f2ff;
+    color: #343b91;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.admin-daily-reports table td a:hover {
+    background: #e3e5ff;
+}
+
+.admin-daily-reports table td[colspan] {
+    padding: 35px 15px;
+    color: #85899b;
+    text-align: center;
+}
+
+.admin-daily-reports nav[role="navigation"] {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .admin-daily-reports {
+        padding: 14px;
+    }
+
+    .admin-daily-reports > form {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 14px;
+    }
+
+    .admin-daily-reports > form input,
+    .admin-daily-reports > form select,
+    .admin-daily-reports > form button {
+        width: 100%;
+        flex: auto;
+    }
+
+    .admin-daily-reports table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .admin-daily-reports table th,
+    .admin-daily-reports table td {
+        padding: 12px;
+    }
+}
+
+
+/* =========================
+   TELEGRAM USLUBIDAGI HISOBOT
+========================= */
+
+.telegram-report {
+    max-width: 720px;
+    padding: 26px 28px;
+    background: #fff;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    color: #222;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.telegram-report h2 {
+    margin: 0 0 18px;
+    color: #172554;
+    font-size: 20px;
+    font-weight: 750;
+}
+
+.telegram-report h3 {
+    margin: 18px 0 8px;
+    color: #172554;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.telegram-report p {
+    margin: 5px 0;
+    overflow-wrap: anywhere;
+}
+
+.telegram-report strong {
+    font-weight: 700;
+    color: #111827;
+}
+
+.telegram-divider {
+    margin: 18px 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.telegram-comment {
+    white-space: pre-wrap;
+}
+
+.telegram-date {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.telegram-back {
+    display: inline-block;
+    margin-top: 18px;
+    color: #1684d6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.telegram-back:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .telegram-report {
+        padding: 18px 16px;
+        font-size: 14px;
+    }
+
+    .telegram-report h2 {
+        font-size: 18px;
+    }
+}

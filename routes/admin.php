@@ -9,6 +9,10 @@ use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Employee\AttendanceController;
 
+use App\Http\Controllers\Admin\DailyReportController;
+use App\Http\Controllers\Admin\DailyReportFieldController;
+
+
 Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')
@@ -64,6 +68,31 @@ Route::middleware(['auth', 'role:admin'])
         ])->name('attendance.photo');
 
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | Hisobot
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/daily-report', [DailyReportController::class, 'index'])
+        ->name('daily-report.index');
+
+        Route::get('/daily-report/fields', [DailyReportFieldController::class, 'index'])
+        ->name('daily-report.fields.index');
+
+        Route::post('/daily-report/fields', [DailyReportFieldController::class, 'store'])
+        ->name('daily-report.fields.store');
+
+        Route::put('/daily-report/fields/{field}', [DailyReportFieldController::class, 'update'])
+        ->name('daily-report.fields.update');
+
+        Route::delete('/daily-report/fields/{field}', [DailyReportFieldController::class, 'destroy'])
+        ->name('daily-report.fields.destroy');
+
+        Route::get('/daily-report/{dailyReport}', [DailyReportController::class, 'show'])
+            ->whereNumber('dailyReport')
+            ->name('daily-report.show');
         /*
         |--------------------------------------------------------------------------
         | Leadlar

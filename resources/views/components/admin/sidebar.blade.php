@@ -43,7 +43,8 @@
             <span>Bo'limlar</span>
         </a>
 
-        <a href="#" class="menu-item" style="color: #666">
+        <a href="{{ route('admin.daily-report.index') }}"
+           class="menu-item {{ request()->routeIs('admin.daily-report.*') ? 'active' : '' }}">
             <i class="fa-solid fa-chart-column"></i>
             <span>Hisobotlar</span>
         </a>

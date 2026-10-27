@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Employee\LeadsController;
+use App\Http\Controllers\Employee\DailyReportController;
 use App\Http\Controllers\Employee\AttendanceController;
 
 Route::middleware(['auth', 'role:employee'])
@@ -53,6 +54,27 @@ Route::middleware(['auth', 'role:employee'])
             Route::get('/dashboard', function () {
                 return redirect()->route('employee.leads.index');
             })->name('dashboard');
+
+
+        /*
+        |-----------------------
+        | Hisobot
+        |-----------
+        */
+        Route::get('/daily-reports', [DailyReportController::class, 'index'])
+        ->name('daily-reports.index');
+
+        Route::get('/daily-reports/create', [DailyReportController::class, 'create'])
+            ->name('daily-reports.create');
+
+        Route::post('/daily-reports', [DailyReportController::class, 'store'])
+            ->name('daily-reports.store');
+
+        Route::get('/daily-reports/{dailyReport}/edit', [DailyReportController::class, 'edit'])
+            ->name('daily-reports.edit');
+
+        Route::put('/daily-reports/{dailyReport}', [DailyReportController::class, 'update'])
+            ->name('daily-reports.update');
 
 
             /*
