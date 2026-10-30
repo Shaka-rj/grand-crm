@@ -15,6 +15,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = User::where('role', 'employee')
+            ->where('status', true)
             ->with('departments')
             ->latest()
             ->get();
@@ -25,7 +26,11 @@ class EmployeeController extends Controller
 
         $departments = Department::all();
 
-        return view('admin.employee.index', compact('employees', 'departments', 'activeEmployees'));
+        return view('admin.employee.index', compact(
+            'employees',
+            'departments',
+            'activeEmployees'
+        ));
     }
 
     public function store(Request $request)
